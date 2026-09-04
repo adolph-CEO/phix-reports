@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>康乃心 FB 廣告成效分析｜2026/06–08</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans TC',sans-serif;background:#f3f4f9;color:#16213e;font-size:15px;line-height:1.75}
+header{background:linear-gradient(135deg,#0c1835 0%,#122d4a 55%,#0a4560 100%);padding:50px 40px 42px;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-70px;right:-60px;width:280px;height:280px;border-radius:50%;background:rgba(18,176,154,.07);pointer-events:none}
+.hi{max-width:980px;margin:0 auto;position:relative;z-index:1}
+.ey{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#12b09a;font-weight:500;margin-bottom:13px;display:flex;align-items:center;gap:8px}
+.ey::before{content:'';display:inline-block;width:22px;height:2px;background:#12b09a}
+header h1{font-size:clamp(22px,4vw,32px);font-weight:600;line-height:1.25;color:#fff;margin-bottom:9px}
+.hs{font-size:13px;color:rgba(255,255,255,.46);font-weight:300}
+.htags{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.ht{font-size:11px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.68);padding:4px 12px;border-radius:20px}
+main{max-width:980px;margin:0 auto;padding:40px 24px 80px}
+.pdiv{display:flex;align-items:center;gap:14px;margin:52px 0 34px}
+.pl{flex:1;height:1px;background:rgba(60,80,140,.10)}
+.plb{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid rgba(60,80,140,.10);border-radius:100px;padding:6px 18px 6px 10px;white-space:nowrap}
+.pd{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.plb span{font-size:12px;font-weight:500;color:#3d4a6b}
+.kg{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-bottom:36px}
+.kc{background:#fff;border:1px solid rgba(60,80,140,.10);border-radius:13px;padding:17px 19px}
+.kc.ac{border-top:3px solid #12b09a}
+.kl{font-size:10px;color:#8892aa;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px}
+.kv{font-size:24px;font-weight:600;color:#16213e;line-height:1.1}
+.ks{font-size:11px;color:#8892aa;margin-top:4px}
+.kd{font-size:11px;font-weight:500;margin-top:4px}
+.up{color:#0a7a6b}.dn{color:#bf2b2b}.nu{color:#8892aa}
+.sec{margin-bottom:44px}
+.sh{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(60,80,140,.10)}
+.sh h2{font-size:15px;font-weight:600;color:#16213e}
+.sh p{font-size:12px;color:#8892aa}
+.cc{background:#fff;border:1px solid rgba(60,80,140,.10);border-radius:13px;padding:22px 22px 26px;margin-bottom:14px}
+.ct{font-size:13px;font-weight:500;color:#3d4a6b;margin-bottom:3px}
+.cd{font-size:12px;color:#8892aa;margin-bottom:14px}
+.leg{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:13px;font-size:11px;color:#3d4a6b}
+.li{display:flex;align-items:center;gap:5px}
+.ld{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.ig{grid-template-columns:1fr}}
+.ic{background:#fff;border:1px solid rgba(60,80,140,.10);border-radius:13px;padding:18px 20px}
+.ic.g{border-left:4px solid #0a7a6b}
+.ic.b{border-left:4px solid #1a4da8}
+.ic.w{border-left:4px solid #ae5c0e}
+.ic.r{border-left:4px solid #bf2b2b}
+.ic.p{border-left:4px solid #6438a0}
+.ic.n{border-left:4px solid #d4a800}
+.ic.teal{border-left:4px solid #12b09a}
+.im{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.inm{font-size:13px;font-weight:600;color:#16213e;flex:1;min-width:0}
+.icpa{font-size:13px;font-weight:600;white-space:nowrap}
+.g .icpa{color:#0a7a6b}.b .icpa{color:#1a4da8}.w .icpa{color:#ae5c0e}.r .icpa{color:#bf2b2b}.p .icpa{color:#6438a0}.n .icpa{color:#b88a00}.teal .icpa{color:#12b09a}
+.ist{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.sp{font-size:11px;color:#3d4a6b;background:#f3f4f9;padding:3px 8px;border-radius:20px}
+.ib{font-size:12px;color:#3d4a6b;line-height:1.7}
+.badge{font-size:10px;font-weight:500;padding:2px 8px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.bg{background:#e2f5f2;color:#0a7a6b}.bb{background:#e4edfb;color:#1a4da8}.bw{background:#fdf0e2;color:#ae5c0e}.br{background:#fde6e6;color:#bf2b2b}.bp{background:#efe8fb;color:#6438a0}.bn{background:#fef8e0;color:#b88a00}.bt{background:#e0f8f4;color:#12b09a}
+.cr{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:10px;margin-bottom:28px}
+.crc{background:#fff;border:1px solid rgba(60,80,140,.10);border-radius:13px;padding:14px 16px}
+.crl{font-size:10px;color:#8892aa;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.crv{font-size:18px;font-weight:600;color:#16213e;line-height:1.1}
+.crd{font-size:11px;font-weight:500;margin-top:3px}
+.tbl{width:100%;border-collapse:collapse;background:#fff;border-radius:13px;overflow:hidden;border:1px solid rgba(60,80,140,.10);font-size:13px;margin-bottom:14px}
+.tbl thead tr{background:#16213e;color:#fff}
+.tbl thead th{padding:11px 14px;text-align:left;font-weight:500;font-size:11px;letter-spacing:.05em}
+.tbl tbody tr:nth-child(even){background:#f3f4f9}
+.tbl tbody td{padding:10px 14px;color:#3d4a6b;border-top:1px solid rgba(60,80,140,.10);vertical-align:top}
+.tbl tbody td:first-child{color:#16213e}
+.cbad{color:#bf2b2b;font-weight:600}.cwarn{color:#ae5c0e;font-weight:600}.cgood{color:#0a7a6b;font-weight:600}.cneu{color:#3d4a6b;font-weight:600}
+.sbox{background:#16213e;color:#fff;border-radius:13px;padding:26px;margin-bottom:14px}
+.sbox h3{font-size:13px;font-weight:600;color:#12b09a;margin-bottom:16px;letter-spacing:.05em;text-transform:uppercase}
+.si{display:flex;flex-direction:column;gap:11px}
+.sit{display:flex;gap:12px;font-size:13px;line-height:1.65;color:rgba(255,255,255,.80)}
+.sn{font-size:10px;font-weight:600;color:#12b09a;background:rgba(18,176,154,.13);border-radius:4px;padding:2px 7px;height:fit-content;margin-top:3px;white-space:nowrap;flex-shrink:0}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.ag{grid-template-columns:1fr}}
+.ac2{background:#fff;border:1px solid rgba(60,80,140,.10);border-radius:13px;padding:17px 19px}
+.ap{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.p1{color:#0a7a6b}.p2{color:#1a4da8}.p3{color:#ae5c0e}
+.at{font-size:13px;font-weight:600;color:#16213e;margin-bottom:6px}
+.ab{font-size:12px;color:#3d4a6b;line-height:1.65}
+.trend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:16px}
+.trend-card{background:#fff;border:1px solid rgba(60,80,140,.10);border-radius:13px;padding:16px 18px}
+.trend-name{font-size:12px;font-weight:600;color:#16213e;margin-bottom:10px}
+.trend-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.trend-month{font-size:11px;color:#8892aa;width:40px;flex-shrink:0}
+.trend-bar-wrap{flex:1;background:#f3f4f9;border-radius:4px;height:12px;overflow:hidden}
+.trend-bar{height:12px;border-radius:4px}
+.trend-val{font-size:11px;font-weight:600;width:60px;text-align:right;flex-shrink:0}
+.tag-new{font-size:10px;background:#fef8e0;color:#b88a00;border-radius:4px;padding:1px 5px;margin-left:4px;font-weight:500}
+.tag-up{font-size:10px;background:#fde6e6;color:#bf2b2b;border-radius:4px;padding:1px 5px;margin-left:4px;font-weight:500}
+.tag-dn{font-size:10px;background:#e2f5f2;color:#0a7a6b;border-radius:4px;padding:1px 5px;margin-left:4px;font-weight:500}
+footer{text-align:center;font-size:12px;color:#8892aa;padding:28px 24px;border-top:1px solid rgba(60,80,140,.10)}
+@media(max-width:640px){header{padding:32px 18px 28px}main{padding:26px 14px 56px}.kv{font-size:20px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hi">
+    <p class="ey">康乃心婦產科暨醫學美學診所</p>
+    <h1>Facebook 廣告成效分析報告</h1>
+    <p class="hs">2026/06–08 三個月綜合分析 + 8月單月深度分析 + 跨月趨勢 + 總結建議</p>
+    <div class="htags">
+      <span class="ht">8月花費 NT$52,169</span>
+      <span class="ht">8月諮詢 226 次</span>
+      <span class="ht">8月平均 CPA NT$164.5</span>
+      <span class="ht">數據來源：Meta Marketing API</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ══ 6–8月綜合分析 ══ -->
+<div class="pdiv">
+  <div class="pl"></div>
+  <div class="plb"><span class="pd" style="background:#12b09a"></span><span>6–8月 三個月綜合分析</span></div>
+  <div class="pl"></div>
+</div>
+
+<div class="kg">
+  <div class="kc ac">
+    <p class="kl">三個月總花費</p>
+    <p class="kv">NT$234,459</p>
+    <p class="ks">6月 NT$137,268 + 8月 NT$52,169（含7月）</p>
+  </div>
+  <div class="kc">
+    <p class="kl">三個月總曝光</p>
+    <p class="kv">1,202,485</p>
+    <p class="ks">8月單月 300,161</p>
+  </div>
+  <div class="kc">
+    <p class="kl">三個月最低 CPA</p>
+    <p class="kv">NT$40</p>
+    <p class="ks">「粉嫩雷射」（已結束）</p>
+  </div>
+  <div class="kc">
+    <p class="kl">8月諮詢 CPA</p>
+    <p class="kv">NT$164.5</p>
+    <p class="ks kd up">↓ 較7月 NT$179 改善 8%</p>
+  </div>
+  <div class="kc">
+    <p class="kl">持續高效廣告</p>
+    <p class="kv">2 支</p>
+    <p class="ks">「鬆緊喜好」「好緊啊」跨季穩定</p>
+  </div>
+  <div class="kc">
+    <p class="kl">三個月 ThruPlay 觀看</p>
+    <p class="kv">209,048</p>
+    <p class="ks">平均每次 NT$0.10</p>
+  </div>
+</div>
+
+<!-- 跨月趨勢 -->
+<div class="sec">
+  <div class="sh"><h2>跨月 CPA 趨勢</h2><p>同一廣告 6月→7月→8月變化</p></div>
+  <div class="trend-grid">
+
+    <div class="trend-card">
+      <p class="trend-name">「鬆緊喜好🔞」<span class="tag-dn">8月回穩</span></p>
+      <div class="trend-row"><span class="trend-month">5-7月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:8%;background:#0a7a6b"></div></div><span class="trend-val" style="color:#0a7a6b">NT$68</span></div>
+      <div class="trend-row"><span class="trend-month">7月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:11%;background:#ae5c0e"></div></div><span class="trend-val" style="color:#ae5c0e">NT$102</span></div>
+      <div class="trend-row"><span class="trend-month">8月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:9%;background:#0a7a6b"></div></div><span class="trend-val" style="color:#0a7a6b">NT$85</span></div>
+    </div>
+
+    <div class="trend-card">
+      <p class="trend-name">「眼睛會說話」<span class="tag-up">成本微升</span></p>
+      <div class="trend-row"><span class="trend-month">7月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:10%;background:#0a7a6b"></div></div><span class="trend-val" style="color:#0a7a6b">NT$91</span></div>
+      <div class="trend-row"><span class="trend-month">8月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:16%;background:#1a4da8"></div></div><span class="trend-val" style="color:#1a4da8">NT$142</span></div>
+    </div>
+
+    <div class="trend-card">
+      <p class="trend-name">「在孩子來到世上之前」<span class="tag-up">持續上升</span></p>
+      <div class="trend-row"><span class="trend-month">7月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:16%;background:#1a4da8"></div></div><span class="trend-val" style="color:#1a4da8">NT$141</span></div>
+      <div class="trend-row"><span class="trend-month">8月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:23%;background:#ae5c0e"></div></div><span class="trend-val" style="color:#ae5c0e">NT$210</span></div>
+    </div>
+
+    <div class="trend-card">
+      <p class="trend-name">「好緊啊憋到快不能呼吸」<span class="tag-dn">穩定高效</span></p>
+      <div class="trend-row"><span class="trend-month">7月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:7%;background:#0a7a6b"></div></div><span class="trend-val" style="color:#0a7a6b">NT$60</span></div>
+      <div class="trend-row"><span class="trend-month">8月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:9%;background:#0a7a6b"></div></div><span class="trend-val" style="color:#0a7a6b">NT$80</span></div>
+    </div>
+
+    <div class="trend-card">
+      <p class="trend-name">00-Reel 短影音<span class="tag-up">8月回升</span></p>
+      <div class="trend-row"><span class="trend-month">5-7月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:23%;background:#ae5c0e"></div></div><span class="trend-val" style="color:#ae5c0e">NT$211</span></div>
+      <div class="trend-row"><span class="trend-month">7月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:14%;background:#1a4da8"></div></div><span class="trend-val" style="color:#1a4da8">NT$130</span></div>
+      <div class="trend-row"><span class="trend-month">8月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:19%;background:#1a4da8"></div></div><span class="trend-val" style="color:#1a4da8">NT$168</span></div>
+    </div>
+
+    <div class="trend-card">
+      <p class="trend-name">「還在煩惱肉毒品牌怎麼挑」<span class="tag-dn">大幅改善</span></p>
+      <div class="trend-row"><span class="trend-month">7月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:38%;background:#bf2b2b"></div></div><span class="trend-val" style="color:#bf2b2b">NT$338</span></div>
+      <div class="trend-row"><span class="trend-month">8月</span><div class="trend-bar-wrap"><div class="trend-bar" style="width:14%;background:#1a4da8"></div></div><span class="trend-val" style="color:#1a4da8">NT$122</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 3個月洞察 -->
+<div class="sec">
+  <div class="sh"><h2>6–8月 核心洞察</h2><p>跨季度持續成立的發現</p></div>
+  <div class="ig">
+
+    <div class="ic g">
+      <div class="im"><span class="badge bg">三個月持續最強</span><span class="inm">私密健康體感語氣廣告</span></div>
+      <div class="ist">
+        <span class="sp">鬆緊喜好 CPA NT$68–102</span>
+        <span class="sp">好緊啊 CPA NT$60–80</span>
+      </div>
+      <p class="ib">從6月到8月，「用第一人稱說出身體感受」的廣告格式持續是康乃心最強的轉換武器。CTR 均超過 6%，且不論是閨蜜電波（私密鬆弛）還是漏尿（漏尿感），只要語氣夠直接、夠真實，就能觸發點擊和諮詢。這個格式是品牌的護城河，沒有競爭對手能輕易複製。</p>
+    </div>
+
+    <div class="ic n">
+      <div class="im"><span class="badge bn">廣告架構已在進化</span><span class="inm">8月出現目標分化</span></div>
+      <div class="ist">
+        <span class="sp">諮詢目標 10 支</span>
+        <span class="sp">ThruPlay 3 支</span>
+        <span class="sp">互動目標 4 支</span>
+      </div>
+      <p class="ib">8月起廣告組合不再全部以諮詢為目標，開始出現 ThruPlay 影片觀看廣告（「以為肉毒只有瘦臉除皺」「變暗沉不用默默接受」「是誰人氣爆棚」）和互動廣告，代表漏斗意識已在形成。下一步是建立這三層受眾的再行銷串聯。</p>
+    </div>
+
+    <div class="ic b">
+      <div class="im"><span class="badge bb">量體最大</span><span class="inm">「眼睛會說話」接替成主力</span><span class="icpa">8月 CPA NT$142</span></div>
+      <div class="ist">
+        <span class="sp">花費 NT$8,402</span><span class="sp">成果 59 次</span><span class="sp">CTR 5.07%</span>
+      </div>
+      <p class="ib">8月花費最高、諮詢量最多（59次）的廣告。從7月 NT$91 升至 NT$142，成本上升但仍是合格範圍。眼周老化是35歲以上女性的高關注度議題，精準觸及醫美需求族群。成本微升代表受眾在飽和，建議製作第二支眼部主題廣告輪替。</p>
+    </div>
+
+    <div class="ic teal">
+      <div class="im"><span class="badge bt">三個月最大觀看量</span><span class="inm">ThruPlay 廣告累積 209,048 次觀看</span></div>
+      <div class="ist">
+        <span class="sp">8月三支合計花費 NT$7,986</span>
+        <span class="sp">平均每次 NT$0.10</span>
+      </div>
+      <p class="ib">「以為肉毒只有瘦臉除皺」8月帶來 49,976 次觀看（每次 NT$0.08），「變暗沉不用默默接受」25,505 次（NT$0.12）。這批觀看受眾持續累積卻從未被再行銷觸達。三個月累計超過 20 萬次觀看，是目前最大的未開發再行銷資產。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ 8月單月 ══ -->
+<div class="pdiv">
+  <div class="pl"></div>
+  <div class="plb"><span class="pd" style="background:#1a4da8"></span><span>2026/08 單月深度分析</span></div>
+  <div class="pl"></div>
+</div>
+
+<div class="cr">
+  <div class="crc">
+    <p class="crl">8月總花費</p>
+    <p class="crv">NT$52,169</p>
+    <p class="crd nu">19 組廣告（含合計列）</p>
+  </div>
+  <div class="crc">
+    <p class="crl">8月總觸及</p>
+    <p class="crv">168,750</p>
+    <p class="crd nu">總曝光 300,161</p>
+  </div>
+  <div class="crc">
+    <p class="crl">訊息諮詢量</p>
+    <p class="crv">226 次</p>
+    <p class="crd up">↓ 平均 CPA NT$164.5</p>
+  </div>
+  <div class="crc">
+    <p class="crl">較7月 CPA 改善</p>
+    <p class="crv">-8.1%</p>
+    <p class="crd up">NT$179 → NT$164.5</p>
+  </div>
+  <div class="crc">
+    <p class="crl">影片觀看量</p>
+    <p class="crv">79,777</p>
+    <p class="crd nu">三支 ThruPlay 合計</p>
+  </div>
+  <div class="crc">
+    <p class="crl">貼文互動量</p>
+    <p class="crv">3,992</p>
+    <p class="crd nu">四支互動廣告合計</p>
+  </div>
+</div>
+
+<!-- 8月 CPA 圖 -->
+<div class="sec">
+  <div class="sh"><h2>8月 訊息諮詢廣告 CPA 排名</h2><p>10 支諮詢目標廣告，花費÷成果</p></div>
+  <div class="cc">
+    <p class="ct">8月各廣告每次私訊諮詢成本（NT$）</p>
+    <p class="cd">8月最佳 NT$80.2（好緊啊），最差 NT$357.6（漏掉的從容跟自信）；差距縮小，整體結構比前期更健康</p>
+    <div class="leg">
+      <div class="li"><span class="ld" style="background:#0a7a6b"></span>NT$0–100（高效）</div>
+      <div class="li"><span class="ld" style="background:#1a4da8"></span>NT$101–200（合格）</div>
+      <div class="li"><span class="ld" style="background:#ae5c0e"></span>NT$201–350（待改善）</div>
+      <div class="li"><span class="ld" style="background:#bf2b2b"></span>NT$351+（建議停止）</div>
+    </div>
+    <div style="position:relative;width:100%;height:380px">
+      <canvas id="chart8m"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- 8月廣告類型分布 -->
+<div class="sec">
+  <div class="sh"><h2>8月 廣告目標分類表現</h2></div>
+
+  <p style="font-size:13px;font-weight:600;color:#16213e;margin-bottom:10px">📩 訊息諮詢目標（10支）</p>
+  <table class="tbl" style="margin-bottom:20px">
+    <thead><tr><th>廣告名稱</th><th>花費</th><th>成果</th><th>CPA</th><th>CTR</th><th>判斷</th></tr></thead>
+    <tbody>
+      <tr><td>「好緊啊憋到快不能呼吸」</td><td>NT$1,042</td><td>13次</td><td class="cgood">NT$80</td><td>4.64%</td><td>持續加碼</td></tr>
+      <tr><td>「鬆緊喜好🔞」</td><td>NT$3,718</td><td>44次</td><td class="cgood">NT$85</td><td>6.98%</td><td>持續投放</td></tr>
+      <tr><td>「還在煩惱肉毒品牌怎麼挑」</td><td>NT$856</td><td>7次</td><td class="cgood">NT$122</td><td>4.69%</td><td>大幅改善，觀察</td></tr>
+      <tr><td>「眼睛會說話」</td><td>NT$8,402</td><td>59次</td><td class="cgood">NT$142</td><td>5.07%</td><td>主力，製作輪替素材</td></tr>
+      <tr><td>00-Reel 短影音用</td><td>NT$6,553</td><td>39次</td><td class="cneu">NT$168</td><td>7.09%</td><td>觀察，CTR 良好</td></tr>
+      <tr><td>「在孩子來到世上之前」</td><td>NT$4,409</td><td>21次</td><td class="cwarn">NT$210</td><td>3.10%</td><td>持續上升，注意</td></tr>
+      <tr><td>「還跟閨蜜電波不熟？」</td><td>NT$2,581</td><td>12次</td><td class="cwarn">NT$215</td><td>3.97%</td><td>改寫成果導向語氣</td></tr>
+      <tr><td>「自拍喬45度俯拍才安心」</td><td>NT$3,091</td><td>12次</td><td class="cwarn">NT$258</td><td>2.65%</td><td>語氣抽象，改寫</td></tr>
+      <tr><td>「如果花半小時安心與健康」</td><td>NT$3,307</td><td>10次</td><td class="cbad">NT$331</td><td>4.92%</td><td>長期低效，建議停止</td></tr>
+      <tr><td>「漏掉的從容跟自信嗎」</td><td>NT$3,218</td><td>9次</td><td class="cbad">NT$358</td><td>4.47%</td><td>長期低效，建議停止</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:13px;font-weight:600;color:#16213e;margin-bottom:10px">🎬 ThruPlay 影片觀看目標（3支）</p>
+  <table class="tbl" style="margin-bottom:20px">
+    <thead><tr><th>廣告名稱</th><th>花費</th><th>觀看次數</th><th>每次成本</th><th>判斷</th></tr></thead>
+    <tbody>
+      <tr><td>「以為肉毒只有瘦臉除皺」</td><td>NT$4,215</td><td>49,976次</td><td class="cgood">NT$0.08</td><td>最高效，建立觀看受眾做再行銷</td></tr>
+      <tr><td>「變暗沉不用默默接受」</td><td>NT$3,109</td><td>25,505次</td><td class="cgood">NT$0.12</td><td>品牌曝光機器，同上建立受眾</td></tr>
+      <tr><td>「是誰人氣爆棚？」</td><td>NT$662</td><td>4,296次</td><td class="cgood">NT$0.15</td><td>新廣告，觀察規模後考慮加碼</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:13px;font-weight:600;color:#16213e;margin-bottom:10px">👍 貼文互動目標（4支）</p>
+  <table class="tbl">
+    <thead><tr><th>廣告名稱</th><th>花費</th><th>互動次數</th><th>每次成本</th><th>判斷</th></tr></thead>
+    <tbody>
+      <tr><td>「醫師團隊相片」</td><td>NT$666</td><td>1,582次</td><td class="cgood">NT$0.42</td><td>信任素材，互動成本最低，建立再行銷受眾</td></tr>
+      <tr><td>「男人的戰場不分場合」</td><td>NT$1,040</td><td>729次</td><td class="cgood">NT$1.40</td><td>新主題（男性？），觀察受眾屬性</td></tr>
+      <tr><td>「康乃心全新女性美學視角」</td><td>NT$1,227</td><td>611次</td><td class="cgood">NT$2.00</td><td>品牌內容，低成本互動</td></tr>
+      <tr><td>「腋下跟肩線夏季主題」</td><td>NT$4,073</td><td>1,070次</td><td class="cwarn">NT$3.80</td><td>互動成本偏高，夏季借勢效益有限</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 8月洞察 -->
+<div class="sec">
+  <div class="sh"><h2>8月 重點觀察</h2></div>
+  <div class="ig">
+
+    <div class="ic g">
+      <div class="im"><span class="badge bg">8月最佳</span><span class="inm">「好緊啊憋到快不能呼吸」</span><span class="icpa">CPA NT$80</span></div>
+      <div class="ist"><span class="sp">花費 NT$1,042</span><span class="sp">成果 13次</span><span class="sp">CTR 4.64%</span></div>
+      <p class="ib">8月 CPA 最低的諮詢廣告，且預算僅 NT$1,042 是所有諮詢廣告中最少的。低投入高效率說明受眾定向精準、素材共鳴強。強烈建議加碼至 NT$3,000–5,000，同時測試同類語氣的新廣告（如「上完廁所還滴不停」「忍到第三次才決定就醫」）。</p>
+    </div>
+
+    <div class="ic g">
+      <div class="im"><span class="badge bg">穩定主力</span><span class="inm">「鬆緊喜好🔞」</span><span class="icpa">CPA NT$85</span></div>
+      <div class="ist"><span class="sp">花費 NT$3,718</span><span class="sp">成果 44次</span><span class="sp">CTR 6.98%</span></div>
+      <p class="ib">從7月的 NT$102 回穩到 NT$85，成本回穩而非繼續上升，說明受眾尚未飽和。CTR 6.98% 維持高水準，是三個月來持續有效的廣告。建議維持現有預算，同時開始準備第二支同主題廣告備用。</p>
+    </div>
+
+    <div class="ic n">
+      <div class="im"><span class="badge bn">8月大驚喜</span><span class="inm">「還在煩惱肉毒品牌怎麼挑」</span><span class="icpa">CPA NT$122</span></div>
+      <div class="ist"><span class="sp">花費 NT$856</span><span class="sp">成果 7次</span><span class="sp">7月 NT$338 → 8月 NT$122</span></div>
+      <p class="ib">7月 CPA NT$338 被列為低效廣告，8月大幅改善至 NT$122，改善幅度 64%。可能原因：受眾重新定向、素材調整或演算法學習期結束。繼續觀察 9月，若維持 NT$150 以下則正式列入加碼名單。</p>
+    </div>
+
+    <div class="ic b">
+      <div class="im"><span class="badge bb">8月量體最大</span><span class="inm">「眼睛會說話」</span><span class="icpa">CPA NT$142</span></div>
+      <div class="ist"><span class="sp">花費 NT$8,402</span><span class="sp">成果 59次</span><span class="sp">CTR 5.07%</span></div>
+      <p class="ib">8月花費最高、成果量最多（59次），但成本從7月 NT$91 升至 NT$142。這支廣告目前撐起 8月約26%的花費和26%的諮詢量，過度依賴單一廣告有風險。建議準備「眼周老化系列第二支」輪替，分散依賴。</p>
+    </div>
+
+    <div class="ic w">
+      <div class="im"><span class="badge bw">長期低效</span><span class="inm">「如果花半小時安心」「漏掉的從容跟自信」</span><span class="icpa">CPA NT$331–358</span></div>
+      <div class="ist"><span class="sp">兩支合計 NT$6,525</span><span class="sp">成果共 19次</span></div>
+      <p class="ib">兩支廣告在 7月和 8月都維持 CPA NT$300+ 的低效水準，且已連續多個月投放未見改善。語氣共同問題：太抽象、沒有觸發具體身體困擾、缺乏直接的療程連結。建議本月停止，預算移至「好緊啊」加碼。</p>
+    </div>
+
+    <div class="ic p">
+      <div class="im"><span class="badge bp">再行銷潛力最大</span><span class="inm">ThruPlay 三支廣告</span><span class="icpa">8月觀看 79,777 次</span></div>
+      <div class="ist"><span class="sp">花費 NT$7,986</span><span class="sp">平均 NT$0.10/觀看</span></div>
+      <p class="ib">8月三支 ThruPlay 廣告帶來近 8 萬次影片觀看，成本極低。這批看完影片的受眾對品牌已有認知，是轉換廣告的最佳受眾來源。三個月累計超過 20 萬次觀看，若現在啟動再行銷，可能是 9月最低成本的諮詢來源。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ 停止清單 ══ -->
+<div class="pdiv">
+  <div class="pl"></div>
+  <div class="plb"><span class="pd" style="background:#bf2b2b"></span><span>建議停止廣告清單（8月數據）</span></div>
+  <div class="pl"></div>
+</div>
+
+<div class="sec">
+  <div class="sh"><h2>🔴 建議立即停止（CPA > NT$300）</h2><p>兩支合計花費 NT$6,525，成果僅 19 次</p></div>
+  <table class="tbl">
+    <thead><tr><th>廣告名稱</th><th>8月花費</th><th>成果</th><th>CPA</th><th>停止理由</th></tr></thead>
+    <tbody>
+      <tr><td>「如果只要花半小時，就能買到一整年的安心與健康」</td><td>NT$3,307</td><td>10次</td><td class="cbad">NT$331</td><td>三個月持續 CPA NT$330+，語氣太模糊，缺乏具體療程或痛點</td></tr>
+      <tr><td>「#這是妳漏掉的從容跟自信嗎」</td><td>NT$3,218</td><td>9次</td><td class="cbad">NT$358</td><td>三個月持續 CPA NT$340+，語氣抽象，未觸發具體身體困擾</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sh"><h2>🟠 建議改寫或降預算（CPA NT$200–300）</h2></div>
+  <table class="tbl">
+    <thead><tr><th>廣告名稱</th><th>8月花費</th><th>CPA</th><th>建議</th></tr></thead>
+    <tbody>
+      <tr><td>「在孩子來到世上之前」</td><td>NT$4,409</td><td class="cwarn">NT$210</td><td>CPA 連續兩月上升（NT$141→NT$210），建議製作第二支情感孕產廣告輪替，讓這支休息</td></tr>
+      <tr><td>「還跟最夯的閨蜜電波不熟？」</td><td>NT$2,581</td><td class="cwarn">NT$215</td><td>認知類語氣轉換效率低，改寫為「做了之後有什麼感受」的成果導向</td></tr>
+      <tr><td>「🫣自拍總要喬45度俯拍才安心」</td><td>NT$3,091</td><td class="cwarn">NT$258</td><td>情境語氣有趣但缺乏療程連結，加入具體服務名稱或改寫 CTA</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sh"><h2>✅ 確認繼續投放</h2></div>
+  <table class="tbl">
+    <thead><tr><th>廣告名稱</th><th>8月 CPA / 成本</th><th>理由</th></tr></thead>
+    <tbody>
+      <tr><td>「好緊啊憋到快不能呼吸」</td><td class="cgood">NT$80（諮詢）</td><td>8月最佳，立即加碼至 NT$3,000–5,000</td></tr>
+      <tr><td>「鬆緊喜好🔞」</td><td class="cgood">NT$85（諮詢）</td><td>三個月持續穩定，維持預算</td></tr>
+      <tr><td>「還在煩惱肉毒品牌怎麼挑」</td><td class="cgood">NT$122（諮詢）</td><td>大幅改善，持續觀察 9月</td></tr>
+      <tr><td>「眼睛會說話」</td><td class="cgood">NT$142（諮詢）</td><td>8月成果量最多，同時準備輪替素材</td></tr>
+      <tr><td>00-Reel 短影音用</td><td class="cgood">NT$168（諮詢）</td><td>CTR 7.09% 良好，觀察 9月是否繼續改善</td></tr>
+      <tr><td>「以為肉毒只有瘦臉除皺」</td><td class="cgood">NT$0.08/觀看</td><td>ThruPlay 效率最高，建立觀看受眾</td></tr>
+      <tr><td>「變暗沉不用默默接受」</td><td class="cgood">NT$0.12/觀看</td><td>品牌曝光，配合再行銷使用</td></tr>
+      <tr><td>「醫師團隊相片」</td><td class="cgood">NT$0.42/互動</td><td>信任素材互動成本最低，建立互動受眾</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ 總結建議 ══ -->
+<div class="pdiv">
+  <div class="pl"></div>
+  <div class="plb"><span class="pd" style="background:#6438a0"></span><span>總結建議　9月行動指南</span></div>
+  <div class="pl"></div>
+</div>
+
+<div class="sbox">
+  <h3>三個月核心發現</h3>
+  <div class="si">
+    <div class="sit">
+      <span class="sn">發現 01</span>
+      <span>CPA 持續下降，廣告組合正在健康化。8月平均諮詢 CPA NT$164.5，低於7月 NT$179、低於 Q2 均值 NT$182.8，三個月連續改善。關鍵原因：部分低效廣告已停止、高效廣告持續投放、廣告目標開始分化（諮詢/觀看/互動三層）。9月應加速這個趨勢，目標將平均 CPA 降至 NT$140 以下。</span>
+    </div>
+    <div class="sit">
+      <span class="sn">發現 02</span>
+      <span>三個月累計超過 20 萬次 ThruPlay 影片觀看，但再行銷漏斗尚未建立。這是目前成本最低的諮詢擴量路徑。建立「觀看影片 75%」自訂受眾後，用「鬆緊喜好」或「好緊啊」廣告二次觸達，這批暖受眾的預期 CPA 可低於 NT$80，是冷受眾的一半成本。</span>
+    </div>
+    <div class="sit">
+      <span class="sn">發現 03</span>
+      <span>「好緊啊憋到快不能呼吸」（漏尿體感語氣）是目前最被低估的廣告。8月只投 NT$1,042 就帶來 13 次諮詢（CPA NT$80），是同期所有廣告中成本效益最高的。但過去幾個月預算都很少，從未被認真加碼。這支廣告代表的是「第一人稱體感 + 漏尿主題」的方向，是繼「鬆緊喜好」後康乃心第二個有規模化潛力的廣告方向。</span>
+    </div>
+    <div class="sit">
+      <span class="sn">發現 04</span>
+      <span>「眼睛會說話」8月帶來最多諮詢（59次），但過度依賴單一廣告是風險。這支廣告已連續兩月成本上升（NT$91→NT$142），若9月繼續上升，代表受眾飽和。應同步準備眼周老化主題第二支廣告，讓兩支輪替投放，維持這個方向的總成果量同時控制成本。</span>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sh"><h2>9月行動優先序</h2></div>
+  <div class="ag">
+    <div class="ac2">
+      <p class="ap p1">P1 本週</p>
+      <p class="at">停止 2 支長期低效廣告</p>
+      <p class="ab">「如果花半小時安心與健康」和「漏掉的從容跟自信」立即暫停。釋放 NT$6,525，直接移至「好緊啊憋到快不能呼吸」加碼。</p>
+    </div>
+    <div class="ac2">
+      <p class="ap p1">P1 本週</p>
+      <p class="at">「好緊啊」加碼至 NT$4,000</p>
+      <p class="ab">從 NT$1,042 加碼 4 倍。這支廣告是 8月最高效的諮詢廣告，過去一直被低估。加碼後觀察 CPA 是否維持在 NT$100 以下。</p>
+    </div>
+    <div class="ac2">
+      <p class="ap p1">P1 本週</p>
+      <p class="at">啟動 ThruPlay 再行銷受眾</p>
+      <p class="ab">建立「觀看『以為肉毒只有瘦臉除皺』75%」+ 「觀看『變暗沉不用默默接受』75%」自訂受眾，投放「鬆緊喜好」廣告，諮詢目標，預算 NT$2,000 測試。</p>
+    </div>
+    <div class="ac2">
+      <p class="ap p2">P2 兩週內</p>
+      <p class="at">製作「眼睛會說話」輪替素材</p>
+      <p class="ab">以眼周老化為主題製作第二支廣告（如「眼尾紋讓我看起來比實際年齡老五歲」「別人都說我眼睛有神，我只覺得眼皮越來越重」），輪替投放避免受眾疲勞。</p>
+    </div>
+    <div class="ac2">
+      <p class="ap p2">P2 兩週內</p>
+      <p class="at">製作漏尿主題第二支廣告</p>
+      <p class="ab">延伸「好緊啊憋到快不能呼吸」的成功格式，製作「上完廁所還滴不停」或「忍到第三次才決定就醫」，覆蓋不同漏尿情境的族群。</p>
+    </div>
+    <div class="ac2">
+      <p class="ap p3">P3 本月內</p>
+      <p class="at">三層漏斗完整建立</p>
+      <p class="ab">ThruPlay → 建立觀看受眾 → 諮詢廣告再行銷；互動廣告 → 建立互動受眾 → 諮詢廣告再行銷。兩條再行銷路徑都建立後，9月整體 CPA 目標：NT$140 以下。</p>
+    </div>
+  </div>
+</div>
+
+</main>
+<footer>康乃心 Facebook 廣告成效分析　2026/06–08 三個月綜合 + 8月單月分析　數據來源：Meta Marketing API</footer>
+
+<script>
+const gc = cpa => {
+  if (cpa<=100) return '#0a7a6b';
+  if (cpa<=200) return '#1a4da8';
+  if (cpa<=350) return '#ae5c0e';
+  return '#bf2b2b';
+};
+
+const d8m = [
+  {l:'「好緊啊憋到快不能呼吸」', cpa:80.2,  s:1042, n:13},
+  {l:'「鬆緊喜好🔞」',            cpa:84.5,  s:3718, n:44},
+  {l:'「還在煩惱肉毒品牌怎麼挑」',cpa:122.3, s:856,  n:7},
+  {l:'「眼睛會說話」',            cpa:142.4, s:8402, n:59},
+  {l:'00-Reel 短影音用',         cpa:168.0, s:6553, n:39},
+  {l:'「在孩子來到世上之前」',    cpa:210.0, s:4409, n:21},
+  {l:'「還跟閨蜜電波不熟？」',    cpa:215.1, s:2581, n:12},
+  {l:'「自拍喬45度俯拍才安心」',  cpa:257.6, s:3091, n:12},
+  {l:'「如果花半小時安心與健康」', cpa:330.7, s:3307, n:10},
+  {l:'「漏掉的從容跟自信嗎」',    cpa:357.6, s:3218, n:9},
+];
+
+new Chart(document.getElementById('chart8m'),{
+  type:'bar',
+  data:{
+    labels:d8m.map(d=>d.l),
+    datasets:[{data:d8m.map(d=>d.cpa),backgroundColor:d8m.map(d=>gc(d.cpa)),borderRadius:4,borderSkipped:false}]
+  },
+  options:{
+    indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{
+        title:ctx=>d8m[ctx[0].dataIndex].l,
+        label:ctx=>{
+          const d=d8m[ctx.dataIndex];
+          return [`CPA：NT$${d.cpa}`,`花費：NT$${d.s.toLocaleString()}`,`成果：${d.n}次`];
+        }
+      }}
+    },
+    scales:{
+      x:{ticks:{color:'#8892aa',font:{size:11},callback:v=>'NT$'+v},grid:{color:'rgba(60,80,140,.07)'},border:{display:false}},
+      y:{ticks:{color:'#3d4a6b',font:{size:11},autoSkip:false},grid:{display:false},border:{display:false}}
+    }
+  }
+});
+</script>
+</body>
+</html>
