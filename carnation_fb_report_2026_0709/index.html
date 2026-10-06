@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>康乃心 Facebook 廣告成效報告｜2026/07–09</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #f8f9fb;
+    --surface: #ffffff;
+    --surface2: #f2f4f7;
+    --border: #e2e6ec;
+    --ink1: #1a1e27;
+    --ink2: #4a5168;
+    --ink3: #8a90a2;
+    --accent: #2563eb;
+    --accent-light: #eff3ff;
+    --tier-a: #15803d;
+    --tier-b: #1d4ed8;
+    --tier-c: #d97706;
+    --tier-d: #dc2626;
+    --tier-a-bg: #f0fdf4;
+    --tier-b-bg: #eff6ff;
+    --tier-c-bg: #fffbeb;
+    --tier-d-bg: #fef2f2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--ink1); font-size: 14px; line-height: 1.6; }
+  .report-header { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); color: white; padding: 48px 40px 40px; }
+  .report-header .meta { font-size: 12px; opacity: .65; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
+  .report-header h1 { font-size: 28px; font-weight: 700; line-height: 1.3; margin-bottom: 6px; }
+  .report-header .subtitle { font-size: 15px; opacity: .8; }
+  .report-header .period-badge { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-top: 14px; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .section { margin-top: 40px; }
+  .section-title { font-size: 16px; font-weight: 700; color: var(--ink1); border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 20px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .kpi-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; }
+  .kpi-card .label { font-size: 12px; color: var(--ink3); margin-bottom: 6px; }
+  .kpi-card .value { font-size: 26px; font-weight: 700; color: var(--ink1); line-height: 1; }
+  .kpi-card .value.good { color: var(--tier-a); }
+  .kpi-card .value.blue { color: var(--tier-b); }
+  .kpi-card .value.amber { color: var(--tier-c); }
+  .kpi-card .sub { font-size: 12px; color: var(--ink3); margin-top: 5px; }
+  .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+  .chart-card h3 { font-size: 14px; font-weight: 600; color: var(--ink2); margin-bottom: 18px; }
+  .chart-wrap { position: relative; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .data-table th { background: var(--surface2); color: var(--ink2); font-weight: 600; font-size: 12px; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  .data-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--surface2); }
+  .campaign-name { max-width: 280px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cpa-badge { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 12px; font-weight: 600; }
+  .cpa-a { background: var(--tier-a-bg); color: var(--tier-a); }
+  .cpa-b { background: var(--tier-b-bg); color: var(--tier-b); }
+  .cpa-c { background: var(--tier-c-bg); color: var(--tier-c); }
+  .cpa-d { background: var(--tier-d-bg); color: var(--tier-d); }
+  .insight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .insight-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; }
+  .insight-card .tag { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; letter-spacing: .04em; margin-bottom: 10px; }
+  .tag-green { background: var(--tier-a-bg); color: var(--tier-a); }
+  .tag-blue  { background: var(--tier-b-bg); color: var(--tier-b); }
+  .tag-amber { background: var(--tier-c-bg); color: var(--tier-c); }
+  .tag-red   { background: var(--tier-d-bg); color: var(--tier-d); }
+  .tag-gray  { background: var(--surface2); color: var(--ink2); }
+  .insight-card h4 { font-size: 14px; font-weight: 700; color: var(--ink1); margin-bottom: 8px; line-height: 1.4; }
+  .insight-card p  { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+  .tier-legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+  .tier-legend .item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink2); }
+  .tier-legend .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .action-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .action-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+  .action-card ul { list-style: none; padding: 0; }
+  .action-card li { font-size: 12px; color: var(--ink2); padding: 6px 0; border-bottom: 1px solid var(--border); line-height: 1.5; }
+  .action-card li:last-child { border-bottom: none; }
+  .action-card li strong { color: var(--ink1); display: block; }
+  .divider { height: 1px; background: var(--border); margin: 40px 0 0; }
+  .report-footer { padding: 28px 40px; text-align: center; font-size: 12px; color: var(--ink3); }
+  .tab-bar { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+  .tab-btn { padding: 9px 16px; font-size: 13px; font-weight: 500; border: none; background: transparent; cursor: pointer; color: var(--ink3); border-bottom: 2px solid transparent; margin-bottom: -1px; font-family: inherit; }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+  .compare-bar { display: flex; gap: 24px; }
+  .compare-col { flex: 1; }
+  .compare-col .col-head { font-size: 12px; font-weight: 600; color: var(--ink3); text-transform: uppercase; letter-spacing: .06em; padding: 8px 0; border-bottom: 2px solid var(--border); margin-bottom: 12px; }
+  .compare-col.month .col-head { border-color: var(--accent); color: var(--accent); }
+  .compare-item { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .compare-item:last-child { border-bottom: none; }
+  .compare-item .name { color: var(--ink2); margin-bottom: 2px; font-size: 12px; }
+  @media (max-width: 700px) {
+    .report-header { padding: 32px 20px; }
+    .report-header h1 { font-size: 22px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .action-grid { grid-template-columns: 1fr; }
+    .compare-bar { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="report-header">
+  <div class="container">
+    <div class="meta">康乃心婦產科暨醫學美學診所 ｜ Facebook 廣告成效報告</div>
+    <h1>2026 / 07 – 09 廣告成效分析</h1>
+    <div class="subtitle">三個月滾動視窗 × 9月單月深度拆解</div>
+    <div class="period-badge">資料區間：2026-07-01 ～ 2026-09-30</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ① 3個月KPI -->
+  <div class="section">
+    <div class="section-title">整體成效概覽（3個月：7/1–9/30）</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="label">廣告總花費</div>
+        <div class="value">123,620</div>
+        <div class="sub">NT$</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">訊息諮詢總數</div>
+        <div class="value good">636</div>
+        <div class="sub">次（訊息對話目標）</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">訊息平均 CPA</div>
+        <div class="value blue">139.5</div>
+        <div class="sub">NT$／次諮詢　↓ 較前期改善</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">總曝光次數</div>
+        <div class="value">711,190</div>
+        <div class="sub">次</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">總觸及人數</div>
+        <div class="value">297,605</div>
+        <div class="sub">人</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">影片觀看（ThruPlay）</div>
+        <div class="value">195,598</div>
+        <div class="sub">次（3支影片型活動）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 9月單月KPI -->
+  <div class="section">
+    <div class="section-title">9月單月成效（9/1–9/30）</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="label">9月廣告花費</div>
+        <div class="value">26,429</div>
+        <div class="sub">NT$</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">9月訊息諮詢</div>
+        <div class="value good">190</div>
+        <div class="sub">次</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">9月訊息平均 CPA</div>
+        <div class="value good">92.9</div>
+        <div class="sub">NT$／次　本期最佳月份</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">9月曝光</div>
+        <div class="value">167,225</div>
+        <div class="sub">次</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">9月觸及</div>
+        <div class="value">97,375</div>
+        <div class="sub">人</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">活躍廣告活動數</div>
+        <div class="value">16</div>
+        <div class="sub">則（含影片、互動型）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 圖表 -->
+  <div class="section">
+    <div class="section-title">訊息諮詢廣告 CPA 分佈</div>
+    <div class="tier-legend">
+      <div class="item"><div class="dot" style="background:var(--tier-a)"></div>高效率 ≤ NT$100</div>
+      <div class="item"><div class="dot" style="background:var(--tier-b)"></div>可接受 NT$101–200</div>
+      <div class="item"><div class="dot" style="background:var(--tier-c)"></div>需優化 NT$201–350</div>
+      <div class="item"><div class="dot" style="background:var(--tier-d)"></div>停止投放 ≥ NT$351</div>
+    </div>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('3m','chart-tab')">3個月累計</button>
+      <button class="tab-btn" onclick="switchTab('1m','chart-tab')">9月單月</button>
+    </div>
+
+    <div id="tab-3m" class="tab-pane active">
+      <div class="chart-card">
+        <h3>訊息對話活動 CPA（3個月 7/1–9/30，NT$）— 低到高排序</h3>
+        <div class="chart-wrap" style="height:480px">
+          <canvas id="chart3m"></canvas>
+        </div>
+      </div>
+    </div>
+    <div id="tab-1m" class="tab-pane">
+      <div class="chart-card">
+        <h3>訊息對話活動 CPA（9月單月，NT$）— 低到高排序</h3>
+        <div class="chart-wrap" style="height:320px">
+          <canvas id="chart1m"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ 完整資料表 -->
+  <div class="section">
+    <div class="section-title">各廣告活動明細</div>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('t3m','table-tab')">3個月（7/1–9/30）</button>
+      <button class="tab-btn" onclick="switchTab('t1m','table-tab')">9月單月（9/1–9/30）</button>
+    </div>
+
+    <div id="tab-t3m" class="tab-pane active">
+      <div class="chart-card" style="padding:0;overflow:hidden">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>活動名稱</th>
+              <th>目標</th>
+              <th style="text-align:right">花費</th>
+              <th style="text-align:right">成果</th>
+              <th style="text-align:right">CPA</th>
+              <th style="text-align:right">CTR</th>
+            </tr>
+          </thead>
+          <tbody id="tbody3m"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="tab-t1m" class="tab-pane">
+      <div class="chart-card" style="padding:0;overflow:hidden">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>活動名稱</th>
+              <th>目標</th>
+              <th style="text-align:right">花費</th>
+              <th style="text-align:right">成果</th>
+              <th style="text-align:right">CPA</th>
+              <th style="text-align:right">CTR</th>
+            </tr>
+          </thead>
+          <tbody id="tbody1m"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ 3個月 vs 9月比較 -->
+  <div class="section">
+    <div class="section-title">訊息型活動：3個月均值 vs 9月單月對照</div>
+    <div class="chart-card">
+      <div class="compare-bar">
+        <div class="compare-col">
+          <div class="col-head">3個月均值（7/1–9/30）</div>
+          <div class="compare-item"><div class="name">Reel 短影音（00-Reel短影音用）</div><span class="cpa-badge cpa-a">NT$94.7</span></div>
+          <div class="compare-item"><div class="name">粉嫩雷射嗎</div><span class="cpa-badge cpa-a">NT$40.1</span></div>
+          <div class="compare-item"><div class="name">好緊啊憋到快不能呼吸</div><span class="cpa-badge cpa-a">NT$69.4</span></div>
+          <div class="compare-item"><div class="name">中鏢流感打疫苗</div><span class="cpa-badge cpa-a">NT$91.5</span></div>
+          <div class="compare-item"><div class="name">鬆緊喜好🔞</div><span class="cpa-badge cpa-a">NT$94.8</span></div>
+          <div class="compare-item"><div class="name">來了來了！！！</div><span class="cpa-badge cpa-b">NT$102.0</span></div>
+          <div class="compare-item"><div class="name">眼睛會說話</div><span class="cpa-badge cpa-b">NT$145.5</span></div>
+          <div class="compare-item"><div class="name">秋天才剛開始先卡位</div><span class="cpa-badge cpa-b">NT$156.3</span></div>
+          <div class="compare-item"><div class="name">在孩子來到世上之前</div><span class="cpa-badge cpa-b">NT$168.7</span></div>
+          <div class="compare-item"><div class="name">肉毒品牌怎麼挑</div><span class="cpa-badge cpa-c">NT$249.4</span></div>
+          <div class="compare-item"><div class="name">閨蜜電波不熟？</div><span class="cpa-badge cpa-c">NT$260.4</span></div>
+          <div class="compare-item"><div class="name">孩子上幼稚園回不去</div><span class="cpa-badge cpa-c">NT$267.3</span></div>
+          <div class="compare-item"><div class="name">自拍45度俯拍</div><span class="cpa-badge cpa-c">NT$290.8</span></div>
+          <div class="compare-item"><div class="name">半小時買到安心健康</div><span class="cpa-badge cpa-c">NT$346.0</span></div>
+          <div class="compare-item"><div class="name">漏掉的從容跟自信</div><span class="cpa-badge cpa-d">NT$374.8</span></div>
+          <div class="compare-item"><div class="name">輪廓逆轉日</div><span class="cpa-badge cpa-d">NT$384.6</span></div>
+        </div>
+        <div class="compare-col month">
+          <div class="col-head">9月單月</div>
+          <div class="compare-item"><div class="name">Reel 短影音（9月）</div><span class="cpa-badge cpa-a">NT$54.0 ⬇️ 突破</span></div>
+          <div class="compare-item"><div class="name">—</div><span style="color:var(--ink3);font-size:12px">（未投放）</span></div>
+          <div class="compare-item"><div class="name">—</div><span style="color:var(--ink3);font-size:12px">（未投放）</span></div>
+          <div class="compare-item"><div class="name">中鏢流感打疫苗（9月）</div><span class="cpa-badge cpa-a">NT$91.5 ➡️ 穩定</span></div>
+          <div class="compare-item"><div class="name">鬆緊喜好🔞（9月）</div><span class="cpa-badge cpa-b">NT$105.0 ➡️ 穩定</span></div>
+          <div class="compare-item"><div class="name">—</div><span style="color:var(--ink3);font-size:12px">（未投放）</span></div>
+          <div class="compare-item"><div class="name">眼睛會說話（9月）</div><span class="cpa-badge cpa-d">NT$477.0 ⬆️ 惡化</span></div>
+          <div class="compare-item"><div class="name">秋天才剛開始先卡位（9月）</div><span class="cpa-badge cpa-b">NT$156.3 ➡️ 持平</span></div>
+          <div class="compare-item"><div class="name">在孩子來到世上之前（9月）</div><span class="cpa-badge cpa-b">NT$167.5 ➡️ 持平</span></div>
+          <div class="compare-item"><div class="name">—</div><span style="color:var(--ink3);font-size:12px">（未投放）</span></div>
+          <div class="compare-item"><div class="name">—</div><span style="color:var(--ink3);font-size:12px">（未投放）</span></div>
+          <div class="compare-item"><div class="name">—</div><span style="color:var(--ink3);font-size:12px">（未投放）</span></div>
+          <div class="compare-item"><div class="name">自拍45度俯拍（9月）</div><span class="cpa-badge cpa-d">NT$521.0 ⬆️ 惡化</span></div>
+          <div class="compare-item"><div class="name">輪廓逆轉日（9月）</div><span class="cpa-badge cpa-d">NT$384.6 ➡️ 仍偏高</span></div>
+          <div class="compare-item"><div class="name">漏掉的從容跟自信（9月）</div><span class="cpa-badge cpa-d">NT$518.5 ⬆️ 惡化</span></div>
+          <div class="compare-item"><div class="name">—</div><span style="color:var(--ink3);font-size:12px">（3m含舊期資料）</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ 洞察 -->
+  <div class="section">
+    <div class="section-title">關鍵洞察</div>
+    <div class="insight-grid">
+
+      <div class="insight-card">
+        <span class="tag tag-green">🚀 重大突破</span>
+        <h4>Reel 短影音 9月 CPA 達 NT$54 — 史上最佳</h4>
+        <p>Reel 活動從 5–7月 NT$211、7月 NT$130、8月 NT$168，到 9月一口氣降至 NT$54。三個月累計均值也降至 NT$94.7，全面進入高效率區。這不是短期偶然，而是素材成熟度與演算法學習累積的結果，建議持續投入並記錄素材方向。</p>
+      </div>
+
+      <div class="insight-card">
+        <span class="tag tag-green">✅ 穩定主力</span>
+        <h4>鬆緊喜好 × 流感疫苗 — 雙主力持續輸出</h4>
+        <p>「鬆緊喜好🔞」3個月均 NT$94.8、9月 NT$105，兩個視窗都在 A~B 區間，是訊息型活動的中流砥柱。「中鏢流感打疫苗」9月 CPA NT$91.5，季節切入點精準，驗證時事/節氣型素材的有效性。</p>
+      </div>
+
+      <div class="insight-card">
+        <span class="tag tag-red">⚠️ 受眾疲勞</span>
+        <h4>眼睛會說話 9月急速惡化：NT$477 vs 均值 NT$145</h4>
+        <p>這支在 3個月視窗表現中等（NT$145），但9月單月 CPA 衝到 NT$477，漲幅超過 3 倍，是明顯的受眾飽和訊號。若未更換素材或受眾，建議暫停。相同情況也見於「自拍45度俯拍」（9月 NT$521 vs 均值 NT$291）。</p>
+      </div>
+
+      <div class="insight-card">
+        <span class="tag tag-blue">📌 穩定長青</span>
+        <h4>在孩子來到世上之前 — 兩個視窗都在 NT$168 左右</h4>
+        <p>3個月均值 NT$168.7，9月單月 NT$167.5，幾乎完全一致。代表這支素材已找到穩定受眾，沒有在惡化也沒在改善，屬於「可繼續投放、不需要立刻干預」的狀態。</p>
+      </div>
+
+      <div class="insight-card">
+        <span class="tag tag-amber">📺 再行銷資源</span>
+        <h4>ThruPlay 累計 195,598 次 — 再行銷受眾已蓄積</h4>
+        <p>三個月內三支影片型活動累計近 20 萬次有效觀看（平均每次成本約 NT$0.06–0.15）。這批曾停留超過 15 秒的受眾，是高品質的再行銷池。下一步可針對這個受眾投放訊息型廣告，預計 CPA 可低於均值。</p>
+      </div>
+
+      <div class="insight-card">
+        <span class="tag tag-gray">📊 整體趨勢</span>
+        <h4>9月均值 NT$92.9 是三個月最低點 — 策略正在收斂</h4>
+        <p>從 5–7月均 NT$174.6、6–8月均 NT$179.3，到 7–9月均 NT$139.5，再到 9月單月 NT$92.9，連續三個季度滾動視窗的 CPA 持續下降。投放組合正在找到重心，不是運氣，是素材汰換的結果。</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ⑦ 行動建議 -->
+  <div class="section">
+    <div class="section-title">行動建議</div>
+    <div class="action-grid">
+      <div class="action-card">
+        <h4 style="color:var(--tier-d)">🛑 建議停止或暫停</h4>
+        <ul>
+          <li>
+            <strong>眼睛會說話（訊息）</strong>
+            9月單月 CPA NT$477，較3月均值惡化 3.3 倍，受眾已飽和。暫停或重製素材後再測。
+          </li>
+          <li>
+            <strong>自拍總要喬45度俯拍（訊息）</strong>
+            9月 CPA NT$521，3個月均值也達 NT$291。素材生命週期已接近尾端。
+          </li>
+          <li>
+            <strong>漏掉的從容跟自信（訊息）</strong>
+            9月 CPA NT$518.5，且花費僅 NT$1,037，可視為已停止，確認後正式關閉。
+          </li>
+          <li>
+            <strong>輪廓逆轉日（訊息）</strong>
+            3個月均值 NT$384.6，9月也維持 NT$384.6。長期高成本，沒有改善跡象。
+          </li>
+          <li>
+            <strong>半小時買到安心健康（訊息）</strong>
+            3個月均值 NT$346，接近停止線。9月無單獨投放數據，建議觀察後續是否繼續。
+          </li>
+        </ul>
+      </div>
+      <div class="action-card">
+        <h4 style="color:var(--tier-a)">✅ 建議繼續或加碼</h4>
+        <ul>
+          <li>
+            <strong>Reel 短影音（訊息）</strong>
+            9月 CPA NT$54，三期持續改善。這是目前投報最佳的訊息型廣告，建議增加預算並擴展素材測試。
+          </li>
+          <li>
+            <strong>中鏢流感打疫苗（訊息）</strong>
+            季節素材成功，CPA NT$91.5 維持穩定。建議繼續延伸秋冬節氣相關主題素材。
+          </li>
+          <li>
+            <strong>鬆緊喜好🔞（訊息）</strong>
+            3個月均值 NT$94.8，9月 NT$105。私密話題的穩定表現，建議維持並測試不同切角的新素材。
+          </li>
+          <li>
+            <strong>在孩子來到世上之前（訊息）</strong>
+            兩視窗均 NT$167–168，穩定但有改善空間。可嘗試調整受眾設定或加入影片版本測試。
+          </li>
+          <li>
+            <strong>ThruPlay 影片受眾再行銷</strong>
+            195,598 次觀看已蓄積足夠再行銷受眾。建議針對影片觀看 25%+ 的受眾，投放訊息型廣告，預期 CPA 可降至 NT$80 以下。
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑧ 素材方向備忘 -->
+  <div class="section">
+    <div class="section-title">素材方向備忘</div>
+    <div class="chart-card">
+      <p style="font-size:13px; color:var(--ink2); line-height:1.8; margin-bottom:12px">
+        <strong style="color:var(--ink1)">有效素材共同特徵：</strong>
+        Reel 短影音（持續學習型）、季節/時事切入（流感疫苗）、有具體痛點描述的私密話題（鬆緊喜好）。
+        這三類的共通點是：觸及前就能讓受眾感覺「在說我」，不需要先解釋背景。
+      </p>
+      <p style="font-size:13px; color:var(--ink2); line-height:1.8; margin-bottom:12px">
+        <strong style="color:var(--ink1)">趨勢疲勞的素材模式：</strong>
+        眼睛會說話、自拍45度、漏掉的從容 — 這類素材通常是情境描述型，受眾初次看到有共鳴，但重複曝光後點擊意願快速下降。建議這類素材的「使用壽命」設定在 2–3 個月，到期前主動準備替換素材。
+      </p>
+      <p style="font-size:13px; color:var(--ink2); line-height:1.8">
+        <strong style="color:var(--ink1)">下月（10月）建議測試方向：</strong>
+        秋冬換季保養主題（已驗證季節素材有效）、Reel 素材新版本（乘勝追擊）、針對影片觀看受眾的再行銷素材（低成本觸達高意向用戶）。
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+<div class="report-footer">康乃心婦產科暨醫學美學診所 ｜ Facebook 廣告成效報告 2026/07–09 ｜ 翼馳行銷製作</div>
+
+<script>
+// ── 資料 ──────────────────────────────────────────────
+const rows3m = [
+  { name:'00-Reel短影音用', ind:'訊息對話', spend:21684, results:229, cpa:94.7, ctr:6.33 },
+  { name:'眼睛會說話', ind:'訊息對話', spend:11203, results:77, cpa:145.5, ctr:5.54 },
+  { name:'在孩子來到世上之前', ind:'訊息對話', spend:10124, results:60, cpa:168.7, ctr:3.21 },
+  { name:'鬆緊喜好🔞', ind:'訊息對話', spend:9286, results:98, cpa:94.8, ctr:7.35 },
+  { name:'半小時買到安心健康', ind:'訊息對話', spend:7611, results:22, cpa:346.0, ctr:4.99 },
+  { name:'以為肉毒只有瘦臉除皺', ind:'ThruPlay', spend:7579, results:89756, cpa:0.08, ctr:0.14 },
+  { name:'夏天腋下跟肩線', ind:'貼文互動', spend:7364, results:1946, cpa:3.8, ctr:5.05 },
+  { name:'閨蜜電波不熟？', ind:'訊息對話', spend:5989, results:23, cpa:260.4, ctr:3.63 },
+  { name:'漏掉的從容跟自信', ind:'訊息對話', spend:5622, results:15, cpa:374.8, ctr:4.17 },
+  { name:'00-1-常態影片競價+互動', ind:'ThruPlay', spend:5115, results:37354, cpa:0.14, ctr:0.96 },
+  { name:'自拍總要喬45度', ind:'訊息對話', spend:4943, results:17, cpa:290.8, ctr:2.83 },
+  { name:'變暗沉不用默默接受(影)', ind:'ThruPlay', spend:4603, results:35176, cpa:0.13, ctr:1.11 },
+  { name:'還在煩惱肉毒品牌怎麼挑', ind:'訊息對話', spend:4240, results:17, cpa:249.4, ctr:4.77 },
+  { name:'2026/09~11月行銷', ind:'貼文互動', spend:2770, results:269, cpa:10.3, ctr:0.64 },
+  { name:'康乃心全新女性美學視角', ind:'貼文互動', spend:2200, results:1301, cpa:1.7, ctr:5.86 },
+  { name:'好緊啊憋到快不能呼吸', ind:'訊息對話', spend:1943, results:28, cpa:69.4, ctr:5.67 },
+  { name:'輪廓逆轉日🔥', ind:'訊息對話', spend:1923, results:5, cpa:384.6, ctr:4.08 },
+  { name:'中鏢流感打疫苗', ind:'訊息對話', spend:1922, results:21, cpa:91.5, ctr:5.49 },
+  { name:'變暗沉不用默默接受(v2)', ind:'ThruPlay', spend:1747, results:29016, cpa:0.06, ctr:0.71 },
+  { name:'00-美療', ind:'貼文互動', spend:1144, results:74, cpa:15.5, ctr:0.55 },
+  { name:'男人的戰場', ind:'貼文互動', spend:1040, results:729, cpa:1.4, ctr:4.44 },
+  { name:'孩子上幼稚園回不去', ind:'訊息對話', spend:802, results:3, cpa:267.3, ctr:4.29 },
+  { name:'醫師團隊相簿', ind:'貼文互動', spend:666, results:1582, cpa:0.42, ctr:17.02 },
+  { name:'是誰人氣爆棚😍', ind:'ThruPlay', spend:662, results:4296, cpa:0.15, ctr:0.84 },
+  { name:'粉嫩雷射嗎', ind:'訊息對話', spend:561, results:14, cpa:40.1, ctr:9.24 },
+  { name:'秋天才剛開始先卡位', ind:'訊息對話', spend:469, results:3, cpa:156.3, ctr:5.21 },
+  { name:'來了來了！！！', ind:'訊息對話', spend:408, results:4, cpa:102.0, ctr:5.12 },
+];
+
+const rows1m = [
+  { name:'00-Reel短影音用', ind:'訊息對話', spend:6806, results:126, cpa:54.0, ctr:6.10 },
+  { name:'2026/09~11月行銷', ind:'貼文互動', spend:2770, results:269, cpa:10.3, ctr:0.64 },
+  { name:'鬆緊喜好🔞', ind:'訊息對話', spend:2206, results:21, cpa:105.0, ctr:8.28 },
+  { name:'輪廓逆轉日🔥', ind:'訊息對話', spend:1923, results:5, cpa:384.6, ctr:4.08 },
+  { name:'中鏢流感打疫苗', ind:'訊息對話', spend:1922, results:21, cpa:91.5, ctr:5.49 },
+  { name:'以為肉毒只有瘦臉除皺', ind:'ThruPlay', spend:1573, results:21049, cpa:0.07, ctr:0.16 },
+  { name:'夏天腋下跟肩線', ind:'貼文互動', spend:1564, results:330, cpa:4.7, ctr:3.88 },
+  { name:'變暗沉不用默默接受', ind:'ThruPlay', spend:1494, results:9671, cpa:0.15, ctr:1.10 },
+  { name:'眼睛會說話', ind:'訊息對話', spend:1431, results:3, cpa:477.0, ctr:4.78 },
+  { name:'在孩子來到世上之前', ind:'訊息對話', spend:1340, results:8, cpa:167.5, ctr:3.29 },
+  { name:'00-美療', ind:'貼文互動', spend:1144, results:74, cpa:15.5, ctr:0.55 },
+  { name:'漏掉的從容跟自信', ind:'訊息對話', spend:1037, results:2, cpa:518.5, ctr:2.88 },
+  { name:'自拍總要喬45度', ind:'訊息對話', spend:521, results:1, cpa:521.0, ctr:2.53 },
+  { name:'秋天才剛開始先卡位', ind:'訊息對話', spend:469, results:3, cpa:156.3, ctr:5.21 },
+  { name:'康乃心全新女性美學視角', ind:'貼文互動', spend:229, results:107, cpa:2.1, ctr:2.64 },
+];
+
+// ── 工具函式 ──────────────────────────────────────────
+function cpaTier(cpa, ind) {
+  if (ind !== '訊息對話') return null;
+  if (cpa <= 100) return 'a';
+  if (cpa <= 200) return 'b';
+  if (cpa <= 350) return 'c';
+  return 'd';
+}
+function tierColor(tier) {
+  return { a:'#15803d', b:'#1d4ed8', c:'#d97706', d:'#dc2626' }[tier] || '#8a90a2';
+}
+function shortName(n) {
+  return n.replace(/^(貼文：「|圖-貼文：「|單次-貼文：「|一次性 貼文：「|圖-單次-\S+：「|臨時廣告-|00-\S+-|2026_\S+-|2026\/\S+行銷|單次活動貼文：「)/, '')
+          .replace(/[」🔞🥴🥺😮‍💨😍🙅‍♀️🙅‍♂️🫣🔥⁉️🤩]|（.*?）|\s*$/, '')
+          .trim()
+          .slice(0, 18);
+}
+
+// ── 長條圖 ──────────────────────────────────────────
+function makeBarChart(canvasId, rows) {
+  const msg = rows.filter(r => r.ind === '訊息對話').sort((a,b) => a.cpa - b.cpa);
+  const labels = msg.map(r => shortName(r.name));
+  const vals   = msg.map(r => r.cpa);
+  const colors = msg.map(r => tierColor(cpaTier(r.cpa, r.ind)));
+
+  new Chart(document.getElementById(canvasId), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{ data: vals, backgroundColor: colors, borderRadius: 4, borderSkipped: false }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: {
+        callbacks: { label: ctx => ' NT$' + ctx.parsed.x.toFixed(0) }
+      }},
+      scales: {
+        x: { title: { display: true, text: 'CPA（NT$）', font: { size: 11 } }, grid: { color: '#e2e6ec' } },
+        y: { ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+}
+
+// ── 資料表 ──────────────────────────────────────────
+function buildTable(tbodyId, rows) {
+  const order = { '訊息對話': 0, '貼文互動': 1, 'ThruPlay': 2 };
+  const sorted = [...rows].sort((a,b) => {
+    const oa = order[a.ind] ?? 9, ob = order[b.ind] ?? 9;
+    if (oa !== ob) return oa - ob;
+    return a.cpa - b.cpa;
+  });
+  const tbody = document.getElementById(tbodyId);
+  sorted.forEach(r => {
+    const tier = cpaTier(r.cpa, r.ind);
+    const cpaBadge = tier
+      ? `<span class="cpa-badge cpa-${tier}">NT$${r.cpa.toFixed(0)}</span>`
+      : `<span style="color:#8a90a2;font-size:12px">NT$${r.cpa.toFixed(2)}</span>`;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="campaign-name" title="${r.name}">${r.name}</td>
+      <td style="white-space:nowrap;color:#4a5168;font-size:12px">${r.ind}</td>
+      <td style="text-align:right">${r.spend.toLocaleString()}</td>
+      <td style="text-align:right">${r.results.toLocaleString()}</td>
+      <td style="text-align:right">${cpaBadge}</td>
+      <td style="text-align:right">${r.ctr.toFixed(2)}%</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ── Tab 切換 ──────────────────────────────────────────
+function switchTab(id, group) {
+  const active = document.getElementById('tab-' + id);
+  if (!active) return;
+  const panes = active.parentElement.querySelectorAll('.tab-pane');
+  const btns  = active.parentElement.previousElementSibling.querySelectorAll('.tab-btn');
+  panes.forEach(p => p.classList.remove('active'));
+  btns.forEach(b => b.classList.remove('active'));
+  active.classList.add('active');
+  const idx = Array.from(panes).indexOf(active);
+  if (btns[idx]) btns[idx].classList.add('active');
+}
+
+// ── 初始化 ──────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  makeBarChart('chart3m', rows3m);
+  makeBarChart('chart1m', rows1m);
+  buildTable('tbody3m', rows3m);
+  buildTable('tbody1m', rows1m);
+});
+</script>
+</body>
+</html>
